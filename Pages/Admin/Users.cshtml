@@ -12,15 +12,22 @@
             <tr>
                 <th>Email</th>
                 <th>Username</th>
+                <th>Roles</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var user in Model.Users)
+            @foreach (var item in Model.UsersWithRoles)
             {
                 <tr>
-                    <td>@user.Email</td>
-                    <td>@user.UserName</td>
+                    <td>@item.User.Email</td>
+                    <td>@item.User.UserName</td>
+                    <td>
+                        @foreach (var role in item.Roles)
+                        {
+                            <span class="badge bg-secondary me-1">@role</span>
+                        }
+                    </td>
                     <td>
                         <!--Placeholders for future role/edit/delete logic-->
                         <button class="btn btn-outline-secondary btn-sm disabled">Edit</button>

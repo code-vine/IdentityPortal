@@ -8,17 +8,32 @@ namespace IdentityPortal.Pages.Admin
     public class UsersModel : PageModel
     {
         private readonly UserManager<IdentityUser> _userManager;
-
-        public UsersModel(UserManager<IdentityUser> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+        public UsersModel(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager  )
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
-        public IList<IdentityUser> Users { get; set; } = new List<IdentityUser>();  
+        public List<UserWithRoles> UsersWithRoles { get; set; } = new ();  
 
-        public void OnGet()
+        public class UserWithRoles
         {
-            Users = _userManager.Users.ToList();
+            public IdentityUser User { get; set; } = default!;
+            public List<string> Roles { get; set; } = new List<string>();
+        }
+
+        public async Task OnGet()
+        {
+            UsersWithRoles = new List<UserWithRoles>();
+
+            foreach (var user in _userManager.Users.ToList())
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                UsersWithRoles.Add(new UserWithRoles { User = user,
+                    Roles = roles.ToList()
+                });
+            }
         }
     }
 }
