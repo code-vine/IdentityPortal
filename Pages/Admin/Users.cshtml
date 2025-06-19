@@ -1,0 +1,33 @@
+﻿@page
+@model IdentityPortal.Pages.Admin.UsersModel
+@{
+    ViewData["Title"] = "Manage Users";
+}
+
+<section class="container mt-5">
+    <h2 class="mb-4">👥 User Management</h2>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model.Users)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.UserName</td>
+                    <td>
+                        <!--Placeholders for future role/edit/delete logic-->
+                        <button class="btn btn-outline-secondary btn-sm disabled">Edit</button>
+                        <button class="btn btn-outline-danger btn-sm disabled">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

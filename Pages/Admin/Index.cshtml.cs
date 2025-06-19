@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace IdentityPortal
+namespace IdentityPortal.Pages.Admin
 {
     [Authorize(Roles = "Admin")]
     public class AdminDashboardModel : PageModel
