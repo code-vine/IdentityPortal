@@ -1,0 +1,15 @@
+﻿@page
+@model AdminDashboardModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+<div class="card mt-4">
+    <div class="card-body">
+        <h5 class="card-title">Welcome, Admin!</h5>
+        <p class="card-text">Here you can manage users, roles, or system-wide settings.</p>
+        <a class="btn btn-primary" asp-page="/Admin/Users">Manage Users</a>
+    </div>
+</div>
