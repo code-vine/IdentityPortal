@@ -13,6 +13,7 @@
                 <th>Email</th>
                 <th>Username</th>
                 <th>Roles</th>
+                <th>Assign Role</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -25,8 +26,29 @@
                     <td>
                         @foreach (var role in item.Roles)
                         {
-                            <span class="badge bg-secondary me-1">@role</span>
+                            <form method="post" asp-page-handler="RemoveRole" class="d-inline">
+                                <input type="hidden" name="userId" value="@item.User.Id" />
+                                <input type="hidden" name="roleToRemove" value="@role" />
+                                <button type="submit" class="badge bg-danger border-0">
+                                    @role ✖
+                                </button>
+                            </form>
                         }
+
+                    </td>
+                    <td>
+                        <form method="post" asp-page-handler="AssignRole" class="d-flex align-items-center">
+                            <input type="hidden" name="userId" value="@item.User.Id" />
+
+                            <select name="selectedRole" class="form-select form-select-sm me-2">
+                                @foreach (var role in Model.AllRoles)
+                                {
+                                    <option value="@role">@role</option>
+                                }
+                            </select>
+
+                            <button type="submit" class="btn btn-sm btn-outline-success">Assign</button>
+                        </form>
                     </td>
                     <td>
                         <!--Placeholders for future role/edit/delete logic-->
