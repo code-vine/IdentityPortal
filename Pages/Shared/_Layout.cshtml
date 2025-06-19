@@ -29,7 +29,7 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Admin/AdminDashboard">Admin</a>
+                                <a class="nav-link text-dark" asp-page="/Admin/Index">Admin</a>
                             </li>
                         }
                         @if (User.Identity?.IsAuthenticated ?? false)
