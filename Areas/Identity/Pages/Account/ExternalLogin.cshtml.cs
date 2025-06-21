@@ -164,6 +164,9 @@ namespace IdentityPortal.Areas.Identity.Pages.Account
                     {
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
 
+                        var newuser = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                        var newuserresult = await _userManager.CreateAsync(newuser);
+
                         var userId = await _userManager.GetUserIdAsync(user);
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                         code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

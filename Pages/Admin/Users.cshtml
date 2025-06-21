@@ -51,9 +51,10 @@
                         </form>
                     </td>
                     <td>
-                        <!--Placeholders for future role/edit/delete logic-->
-                        <button class="btn btn-outline-secondary btn-sm disabled">Edit</button>
-                        <button class="btn btn-outline-danger btn-sm disabled">Delete</button>
+                        <form method="post" asp-page-handler="DeleteUser">
+                            <input type="hidden" name="userId" value="@item.User.Id" />
+                            <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
             }
